@@ -6,7 +6,6 @@ Designed to be installed once and reused across every project.
 ## Quickstart
 
 ```sh
-git clone <your-repo-url> ~/projects/claude-config
 $ git clone https://github.com/casparderksen/claude-config.git claude-config
 $ cd claude-config
 ./setup-claude.sh
@@ -21,39 +20,6 @@ $ claude   # open Claude Code
 
 Claude will detect the project type, confirm the rule modules to activate,
 and wire everything into `.claude/` for you.
-
-## Overview
-
-```
-claude-config/
-├── install.sh                       # Idempotent installer
-├── CLAUDE.md                        # Global preferences (symlinked to ~/.claude/CLAUDE.md)
-│
-├── skills/                          # Symlinked to ~/.claude/skills/
-│   └── init-project.md              # Detects project type and wires rules
-│
-├── commands/                        # Symlinked to ~/.claude/commands/
-│   └── init-project.md              # /init-project slash command
-│
-├── agents/                          # Symlinked to ~/.claude/agents/
-│
-└── rules/                           # Symlinked to ~/.claude/rules-library/
-    ├── java/
-    │   ├── quarkus.md
-    │   ├── spring.md
-    │   └── maven.md
-    ├── frontend/
-    │   ├── angular.md
-    │   ├── react.md
-    │   └── typescript.md
-    ├── platform/
-    │   ├── openapi.md
-    │   ├── docker.md
-    │   └── kubernetes.md
-    └── cloud/
-        ├── aws.md
-        └── gcp.md
-```
 
 **`CLAUDE.md`** — Universal working preferences: communication style, commit conventions,
 and a pointer to the rules library. Loaded by Claude Code in every session, globally.
@@ -75,19 +41,19 @@ Rules are never loaded globally; they are copied into a project on demand by the
 
 ### Installation
 
-`install.sh` creates symlinks from this repository into `~/.claude/`:
+`setup-claude.sh` creates symlinks from this repository into `~/.claude/`:
 
-| Repository path | Symlinked to              |
-|-----------------|---------------------------|
-| `CLAUDE.md`     | `~/.claude/CLAUDE.md`     |
-| `skills/`       | `~/.claude/skills/`       |
-| `commands/`     | `~/.claude/commands/`     |
-| `agents/`       | `~/.claude/agents/`       |
-| `rules/`        | `~/.claude/rules-library/`|
+| Repository path | Symlinked to                  |
+|-----------------|-------------------------------|
+| `CLAUDE.md`     | `~/.claude/CLAUDE.md`         |
+| `settings.json` | `~/.claude/settings.json`     |
+| `skills/`       | `~/.claude/skills/`           |
+| `commands/`     | `~/.claude/commands/`         |
+| `agents/`       | `~/.claude/agents/`           |
+| `rules/`        | `~/.claude/rules-library/`    |
 
-If an existing `~/.claude/CLAUDE.md` is found that is not already a symlink, it is
-backed up with a timestamp before being replaced. The script is idempotent: re-running
-it after a `git pull` refreshes all symlinks without further action.
+If an existing file in `~/.claude` is found that is not already a symlink, it is not overwritten.
+The script is idempotent: re-running it after a `git pull` refreshes all symlinks without further action.
 
 ### Project initialisation
 
@@ -107,11 +73,29 @@ When you run `/init-project` in a new project, the `init-project` skill:
 
 Rule files are plain Markdown. Each file contains conventions for one framework or
 concern. They are intentionally kept separate so that a Quarkus + Angular project
-activates `quarkus.md`, `maven.md`, `angular.md`, and `typescript.md` as four
+activates `quarkus.md`, `java.md`, `angular.md`, and `typescript.md` as four
 independent files — no merging, no coupling.
 
-Fill in the placeholder comments in each rule file with your own conventions.
-The files are yours to version-control, share, or fork.
+### Available rule modules
+
+| Module            | Path                              | Description                                                           |
+|-------------------|-------------------------------- --|-----------------------------------------------------------------------|
+| `java`            | `rules/java/java.md`              | Java code style, idioms, and language conventions                     |
+| `quarkus`         | `rules/backend/quarkus.md`        | Quarkus backend development standards (REST, CDI, persistence)        |
+| `angular`         | `rules/frontend/angular.md`       | Angular project structure, component, and module conventions          |
+| `typescript`      | `rules/frontend/typescript.md`    | TypeScript compiler configuration and type-safety rules               |
+| `design-system`   | `rules/frontend/design-system.md` | Theming tokens, typography, colour, spacing, and iconography          |
+| `ux`              | `rules/frontend/ux.md`            | Interaction patterns, states, accessibility, and responsive behaviour |
+| `git`             | `rules/git/git.md`                | Branching strategy, commit conventions, and merge policies            |
+| `docker`          | `rules/platform/docker.md`        | Container image conventions and multi-stage build patterns            |
+| `kubernetes`      | `rules/platform/kubernetes.md`    | GitOps-only deployments via ArgoCD; manifest standards                |
+| `openapi`         | `rules/platform/openapi.md`       | API spec conventions (spec-first, versioning, schema naming)          |
+| `environments`    | `rules/platform/environments.md`  | Environment promotion strategy (build once, promote the artifact)     |
+| `aws`             | `rules/cloud/aws.md`              | AWS resource conventions, IAM patterns, and tagging strategy          |
+| `gcp`             | `rules/cloud/gcp.md`              | GCP project structure, service account policy, and IaC conventions    |
+
+The platform and cloud modules are placeholders and need elaboration.
+>>>>>>> 42c2337 (Initial commit of project)
 
 ### Adding a new rule module
 
