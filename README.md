@@ -63,7 +63,7 @@ independent files — no merging, no coupling.
 ### Available rule modules
 
 | Module            | Path                              | Description                                                           |
-|-------------------|-------------------------------- --|-----------------------------------------------------------------------|
+|-------------------|-----------------------------------|-----------------------------------------------------------------------|
 | `java`            | `rules/java/java.md`              | Java code style, idioms, and language conventions                     |
 | `quarkus`         | `rules/backend/quarkus.md`        | Quarkus backend development standards (REST, CDI, persistence)        |
 | `angular`         | `rules/frontend/angular.md`       | Angular project structure, component, and module conventions          |
