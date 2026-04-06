@@ -21,23 +21,7 @@ $ claude   # open Claude Code
 Claude will detect the project type, confirm the rule modules to activate,
 and wire everything into `.claude/` for you.
 
-**`CLAUDE.md`** — Universal working preferences: communication style, commit conventions,
-and a pointer to the rules library. Loaded by Claude Code in every session, globally.
-
-**`skills/`** — Reusable instructional workflows. The `init-project` skill is the core
-of this setup. Add further skills here for any repeatable workflow (e.g. generating
-a release, running a DB migration, producing an ADR).
-
-**`commands/`** — Slash commands, each wrapping a skill or a short one-off instruction.
-Available in every project once installed.
-
-**`agents/`** — Custom sub-agents for specialised or long-running tasks.
-
-**`rules/`** — Modular, framework-specific coding conventions. Organised by domain.
-Rules are never loaded globally; they are copied into a project on demand by the
-`init-project` skill.
-
-## How It Works
+## Overview
 
 ### Installation
 
@@ -55,7 +39,7 @@ Rules are never loaded globally; they are copied into a project on demand by the
 If an existing file in `~/.claude` is found that is not already a symlink, it is not overwritten.
 The script is idempotent: re-running it after a `git pull` refreshes all symlinks without further action.
 
-### Project initialisation
+### Project initialisation skill
 
 When you run `/init-project` in a new project, the `init-project` skill:
 
@@ -78,7 +62,6 @@ independent files — no merging, no coupling.
 
 ### Available rule modules
 
-```
 | Module            | Path                              | Description                                                           |
 |-------------------|-------------------------------- --|-----------------------------------------------------------------------|
 | `java`            | `rules/java/java.md`              | Java code style, idioms, and language conventions                     |
@@ -94,7 +77,6 @@ independent files — no merging, no coupling.
 | `environments`    | `rules/platform/environments.md`  | Environment promotion strategy (build once, promote the artifact)     |
 | `aws`             | `rules/cloud/aws.md`              | AWS resource conventions, IAM patterns, and tagging strategy          |
 | `gcp`             | `rules/cloud/gcp.md`              | GCP project structure, service account policy, and IaC conventions    |
-```
 
 The platform and cloud modules are placeholders and need elaboration.
 
