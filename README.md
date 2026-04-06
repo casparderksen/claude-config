@@ -78,6 +78,7 @@ independent files — no merging, no coupling.
 
 ### Available rule modules
 
+```
 | Module            | Path                              | Description                                                           |
 |-------------------|-------------------------------- --|-----------------------------------------------------------------------|
 | `java`            | `rules/java/java.md`              | Java code style, idioms, and language conventions                     |
@@ -93,9 +94,9 @@ independent files — no merging, no coupling.
 | `environments`    | `rules/platform/environments.md`  | Environment promotion strategy (build once, promote the artifact)     |
 | `aws`             | `rules/cloud/aws.md`              | AWS resource conventions, IAM patterns, and tagging strategy          |
 | `gcp`             | `rules/cloud/gcp.md`              | GCP project structure, service account policy, and IaC conventions    |
+```
 
 The platform and cloud modules are placeholders and need elaboration.
->>>>>>> 42c2337 (Initial commit of project)
 
 ### Adding a new rule module
 
