@@ -47,7 +47,6 @@ symlink() {
 }
 
 symlink "CLAUDE.md"
-symlink "settings.json"
 symlink "skills"
 symlink "commands"
 symlink "agents"

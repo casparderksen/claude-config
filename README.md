@@ -30,7 +30,6 @@ and wire everything into `.claude/` for you.
 | Repository path | Symlinked to                  |
 |-----------------|-------------------------------|
 | `CLAUDE.md`     | `~/.claude/CLAUDE.md`         |
-| `settings.json` | `~/.claude/settings.json`     |
 | `skills/`       | `~/.claude/skills/`           |
 | `commands/`     | `~/.claude/commands/`         |
 | `agents/`       | `~/.claude/agents/`           |
